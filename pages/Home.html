@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.5.1.min.js"></script>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="829498266017-32fjff71n24bn68rvgg0eabhigk4mpnl.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+
+</head>
+
+<body>
+
+    <!-- <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v9.0" nonce="XYRyh7G4"></script> -->
+
+    <div class="container-sm" id="top">
+        <div class="col  mt-3">
+            <div class="row justify-content-end py-4">
+                <div class="d-flex justify-content-end col-7">
+                    <button class="btn btn-success justify-content-center" id="login">Login</button>
+                    <button class="btn btn-success justify-content-center" onclick="signOut();" id="googlesignoutbtn" style="display: none;">Sign out</button>
+                </div>
+            </div>
+            <div class="row justify-content-end pb-3" id="externallogins">
+                <div id="googleloginbtn" class="g-signin2 px-2" data-onsuccess="onSignIn" data-theme="dark" style="display: block;"></div>
+                <div class="fb-login-button" data-size="medium" data-button-type="login_with" data-layout="default" data-auto-logout-link="true" data-use-continue-as="true" data-width=""></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-sm pb-5" id="cont">
+        <div class="card" id="card">
+            <div class="card-body" id="cardbody">
+
+                <div class="row" id="btns">
+                    <div class="col-sm pb-5">
+                        <button class="btn btn-outline-primary" id="addpatbtn">Add Patient</button>
+                    </div>
+                    <div class="col-sm pb-5">
+                        <button class="btn btn-outline-primary" id="hosbtn">Hospitals</button>
+                    </div>
+                    <div class="col-sm pb-5">
+                        <button class="btn btn-outline-primary" id="distypbtn">Disease Types</button>
+                    </div>
+                    <div class="col-sm pb-5">
+                        <button class="btn btn-outline-primary" id="statebtn">States</button>
+                    </div>
+                </div>
+
+                <div id="dashboard">
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="card bg-primary m-1" style="width: 10rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Cases</h5>
+                                    <p class="card-text h5" id="tc">123</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="card bg-warning m-1" style="width: 10rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Active Cases</h5>
+                                    <p class="card-text h5" id="ac">100</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="card bg-success m-1" style="width: 10rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Cured Cases</h5>
+                                    <p class="card-text h5" id="cc">23</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="card bg-danger m-1" style="width: 10rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Fatalities</h5>
+                                    <p class="card-text h5" id="f">0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid" id="search">
+
+                    <div class="h4 pb-1 border-bottom pt-2">Search</div>
+                    <fieldset class="pt-2 form-group" id="radiosearch">
+                        <div class="row" id="searchby">
+                            <legend class="col-form-label col-sm-3 pt-0">Search By</legend>
+                            <div class="col-sm-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="searchby" id="aadhaar" value="aadhaarsearch">
+                                    <label class="form-check-label" for="aadhaar">Aadhaar Number</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="searchby" id="state" value="statesearch">
+                                    <label class="form-check-label" for="state">State</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="searchby" id="hospital" value="hospitalsearch">
+                                    <label class="form-check-label" for="hospital">Hospital</label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="form-group row mt-3" id="aadhaarsearch" style="display: none;">
+                        <label for="uid" class="col-sm-3 col-form-label">Aadhaar Number</label>
+                        <div class="col-sm-6" id="UIDinputcheck">
+                            <input type="text" class="form-control is-invalid" maxlength="16" id="uidcheck" placeholder="Aadhaar Number">
+                            <div class="invalid-feedback">Enter 16 digit Aadhaar Number</div>
+                        </div>
+                    </div>
+                    <div class="form-group row mt-3" id="statesearch" style="display: none;">
+                        <label for="statedd" class="col-sm-3 col-form-label">State</label>
+                        <div class="col-sm-7"> <select id="statedd" class="form-control is-invalid">
+                                    <option selected value="0" disabled>Choose State</option>
+                                </select>
+                            <div class="invalid-feedback">Select State</div>
+                        </div>
+                    </div>
+                    <div id="hospitalsearch" style="display: none;">
+                        <div class="form-group row mt-3" id="hstatesearch">
+                            <label for="statedd1" class="col-sm-3 col-form-label">State</label>
+                            <div class="col-sm-7"> <select id="statedd1" class="form-control is-invalid">
+                                    <option selected value="0" disabled>Choose State</option>
+                                    </select>
+                                <div class="invalid-feedback">Select State</div>
+                            </div>
+                        </div>
+                        <div class="form-group row mt-3" id="hsearch">
+                            <label for="hospitaldd" class="col-sm-3 col-form-label">Hospital</label>
+                            <div class="col-sm-9"> <select id="hospitaldd" class="form-control is-invalid">
+                                    <option selected value="0" disabled>Choose Hospital</option>
+                                    </select>
+                                <div class="invalid-feedback">Select Hospital</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex col-11 justify-content-end pb-5">
+                        <button class="btn btn-outline-success" id="gosearch">Search</button>
+                    </div>
+                    <div id="uidmsg" class="pt-3 pb-3" style="display: none;">
+                        <h5>Enter 16 digit Aadhaar Number</h5>
+                    </div>
+
+                </div>
+
+
+                <table class="table table-hover" id="states" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>State Name</th>
+                            <th>Total Cases</th>
+                            <th>Active Cases</th>
+                            <th>Cured Cases</th>
+                            <th>Fatalities</th>
+                        </tr>
+                    </thead>
+                    <tbody> </tbody>
+                </table>
+
+                <table class="table table-hover" id="hospitals" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Hospital Name</th>
+                            <th>Total Cases</th>
+                            <th>Active Cases</th>
+                            <th>Cured Cases</th>
+                            <th>Fatalities</th>
+                        </tr>
+                    </thead>
+                    <tbody> </tbody>
+                </table>
+
+                <div id="patienttable" style="display: none;">
+                    <div id="pages"></div>
+                    <table class="table table-hover" id="patients">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Aadhaar Number</th>
+                                <th>Name</th>
+                                <th>Gender</th>
+                                <th>Age</th>
+                            </tr>
+                        </thead>
+                        <tbody> </tbody>
+                    </table>
+                    <div id="pagination">
+                        <nav aria-label="...">
+                            <ul class="pagination">
+                                <li class="page-item" id="prevt"><a class="page-link" id="prev">Previous</a></li>
+                                <li class="page-item" id="nextt"><a class="page-link" id="next">Next</a></li>
+                            </ul>
+                        </nav><br>
+                        <div class="form-group row" id="cuspage"> <label for="pageno" class="col-sm-3 col-form-label">Go to Page</label>
+                            <input type="text" class="form-control col-sm-4" id="pageno" pattern=".{1,3}" maxlength="3" placeholder="Enter Page Number">
+                            <div class="col-sm-4"><button class="btn btn-outline-success" id="gopage">Go to Page</button></div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../js/Home.js"></script>
+
+    <script src="../js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+
+
+</html>

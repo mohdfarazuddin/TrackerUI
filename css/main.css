@@ -1,0 +1,48 @@
+#UIDinput,
+#mobilenoinput,
+#occupationinput,
+#companynameinput,
+#diseasenameinput,
+#currentstatusinput,
+#diseasetypeinput,
+#diseasetypecusinput,
+#hospitalnameinput {
+    display: flex;
+    align-items: Center;
+}
+
+#sideheader2,
+#sideheader3 {
+    padding: 0;
+    margin: 0;
+    background-color: #456875;
+    color: white;
+}
+
+#mobileblock,
+#addressblock {
+    margin: 1rem -15px 1rem -15px;
+}
+
+#addresschekbox {
+    margin-bottom: 8px;
+}
+
+.address-checkbox {
+    position: absolute;
+    margin-top: .3rem;
+    margin-left: 0.7rem;
+}
+
+.address-checklabel {
+    padding-left: 40px;
+    margin-bottom: 0;
+}
+
+#distypcus,
+#hdetails,
+#occupationdetails,
+#radiocured,
+#dischargedatediv {
+    display: none;
+}

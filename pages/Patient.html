@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/all.min.css">
+
+
+
+
+
+
+</head>
+
+<body>
+
+    <div class="container-sm col-lg-8 pt-5 pb-5" id="cont">
+        <div class="card" id="card">
+            <div class="card-body" id="cardbody">
+
+                <form class="needs-validation" id="UIDcheck" novalidate>
+                    <div class="form-group row mt-3">
+                        <label for="uid" class="col-sm-3 col-form-label">Aadhaar Number</label>
+                        <div class="col-sm-6" id="UIDinputcheck">
+                            <input type="text" class="form-control" id="uidcheck" pattern=".{16}" maxlength="16" placeholder="Aadhaar Number" required>
+                            <div class="invalid-feedback">Enter 16 digit Aadhaar Number</div>
+                        </div>
+                    </div>
+                    <div class="col-9 d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary" id="patientcheckbtn">Next</button>
+                    </div>
+                </form>
+
+                <div class="pb-2"> <button class="btn btn-danger" style="display: none;" id="backbtn">Back</button> </div>
+
+                <div class="pt-2" id="showpatientblock" style="display: none;">
+                    <div class="d-flex pb-1 justify-content-between border-bottom">
+                        <h3>Patient Details</h3>
+                        <button type="submit" class="btn btn-success" id="edit1btn">Edit</button>
+                    </div>
+                    <div id="pdb">
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Aadhaar Number </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showano"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Patient Name </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showname"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Age </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showage"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Sex </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showsex"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Mobile Number </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showmobileno"> </div>
+                        </div>
+                        <div class="d-flex pb-1 justify-content-between border-bottom">
+                            <h5>Temporary Address</h5>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Address Line </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showaddressline1"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> City </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showcity1"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> State </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showstate1"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Pin-Code </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showpincode1"> </div>
+                        </div>
+                        <div class="d-flex pb-1 justify-content-between border-bottom">
+                            <h5>Permanent Address</h5>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Address Line </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showaddressline2"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> City </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showcity2"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> State </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showstate2"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Pin-Code </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showpincode2"> </div>
+                        </div>
+                    </div>
+                    <div class="d-flex pb-1 justify-content-between border-bottom">
+                        <h4>Occupation Details</h4>
+                    </div>
+                    <div id="noocc" class="justify-content-center pt-2 pb-3" style="display: none;"> Not Available </div>
+                    <div id="showoccblock">
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Occupation Type </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showocctyp"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Occupation Name </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showoccname"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Mobile Number </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showoccmobileno"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Address Line </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showaddressline3"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> City </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showcity3"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> State </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showstate3"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Pin-Code </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showpincode3"> </div>
+                        </div>
+                    </div>
+                    <div class="d-flex pb-1 justify-content-between border-bottom">
+                        <h4>Treatment Details</h4>
+                    </div>
+                    <div id="tdb">
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Disease Type </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showdistyp"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Disease Name </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showdisname"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Is Fatality </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showisfat"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Admit Date </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showadmitdate"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Discharge Date </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showdischargedate"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Prescription </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showpres"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Current Status </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showstatus"> </div>
+                        </div>
+                        <div class="d-flex pb-1 justify-content-between border-bottom">
+                            <h5>Hospital Details</h5>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Hospital Name </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showhosname"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Mobile Number </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showhosmobileno"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Address Line </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showaddressline4"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> City </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showcity4"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> State </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showstate4"> </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-sm-4"> Pin-Code </div>
+                            <div class="col-sm-1 d-flex align-items-center"> : </div>
+                            <div class="col-sm d-flex align-items-center" id="showpincode4"> </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <form class="needs-validation" id="addpatientdiv" style="display: none;" novalidate>
+
+                    <div id="personaldetails">
+                        <div class="container-fluid" style="border-bottom: 2px solid grey; " id="sideheader1">
+                            <div class="h4 d-flex px-3" id="header1">Personal Details</div>
+                        </div>
+                        <div class="form-group row mt-3">
+                            <label for="uid" class="col-sm-3 col-form-label">Aadhaar Number</label>
+                            <div class="col-sm-9" id="UIDinput">
+                                <input type="text" class="form-control" id="uid" pattern=".{16}" maxlength="16" placeholder="Aadhaar Number" required>
+                                <div class="invalid-feedback">Enter 16 digit Aadhaar Number</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="name" class="col-sm-3 col-form-label">Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="name" placeholder="Name" minlength="3" required>
+                                <div class="invalid-feedback">Enter valid Name</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="age" class="col-sm-3 col-form-label">Age</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="age" maxlength="2" placeholder="Age" required>
+                                <div class="invalid-feedback">Enter valid Age</div>
+                            </div>
+                        </div>
+                        <fieldset class="form-group">
+                            <div class="row" id="radiosex">
+                                <legend class="col-form-label col-sm-3 pt-0">Sex</legend>
+                                <div class="col-sm-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="sex" id="Male" value="Male" required>
+                                        <label class="form-check-label" for="Male">Male</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="sex" id="Female" value="Female">
+                                        <label class="form-check-label" for="Female">Female</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="sex" id="ThirdGender" value="Third Gender">
+                                        <label class="form-check-label" for="Third Gender">Third Gender</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div id="mobilenumber1">
+                            <div class="form-group row" id="mobileblock"> <label for="mobile" class="col-sm-3 col-form-label">Mobile Number</label>
+                                <div class="col-sm-9" id="mobilenoinput">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">+91</div>
+                                        </div>
+                                        <input type="text" class="form-control" id="mobile" placeholder="10 Digit Mobile Number" pattern=".{10}" maxlength="10" required>
+                                        <div class="invalid-feedback">Enter valid 10 digit Mobile Number.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <fieldset class="form-group">
+                            <div class="row" id="radioemployed">
+                                <legend class="col-form-label col-sm-3 pt-0">Employed</legend>
+                                <div class="col-sm-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="employed" id="employedyes" value="Yes" required>
+                                        <label class="form-check-label" for="employedyes">Yes</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="employed" id="employedno" value="No">
+                                        <label class="form-check-label" for="employedno">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="container-fluid" id="sideheader2">
+                            <div class="h4 d-flex px-3">Present Address</div>
+                        </div>
+                        <div id="address1">
+                            <div class="form-group row" id="addressblock"> <label for="addressline" class="col-sm-3 col-form-label">Address Line</label>
+                                <div class="col-sm-9"> <input type="text" class="form-control" id="addressline" pattern=".{3,50}" maxlength="50" placeholder="Building Number, Street, Mandal" required>
+                                    <div class="invalid-feedback">Enter Address</div>
+                                </div>
+                            </div>
+                            <div class="form-group row"> <label for="city" class="col-sm-3 col-form-label">City</label>
+                                <div class="col-sm-9"> <input type="text" class="form-control" id="city" pattern=".{3,30}" maxlength="30" placeholder="City" required>
+                                    <div class="invalid-feedback">Enter City</div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-sm-7">
+                                    <div class="row"> <label for="state" class="col-sm-3 col-form-label">State</label>
+                                        <div class="col-sm-9"> <select id="state" class="form-control" required> 
+                                                <option selected disabled = "true">Choose State</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-5">
+                                    <div class="row"> <label for="pincode" class="col-sm-5 col-form-label pr-0">Pin Code</label>
+                                        <div class="col-sm-7"> <input type="text" class="form-control" id="pincode" pattern=".{6}" maxlength="6" placeholder="Pin Code" required>
+                                            <div class="invalid-feedback">Enter valid 6 digit Pin Code</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-check" id="addresscheckbox">
+                            <input class="address-checkbox" type="checkbox" id="permaddresscheck">
+                            <label class="address-checklabel" for="permaddresscheck">Tick this box if the above address is Permanent.</label>
+                        </div>
+                        <div class="container-fluid" id="sideheader3">
+                            <div class="h4 d-flex px-3">Permanent Address</div>
+                        </div>
+                        <div id="address2"></div>
+                    </div>
+
+                    <div id="occupationdetails">
+                        <div class="container-fluid" style="border-bottom: 2px solid grey; " id="sideheader4">
+                            <div class="h4 d-flex px-3">Occupation Details</div>
+                        </div>
+                        <div class="form-group row mt-3">
+                            <label for="occupationtype" class="col-sm-3 col-form-label">Occupation Type</label>
+                            <div class="col-sm-9" id="occupationinput">
+                                <input type="text" class="form-control" id="occupationtype" placeholder="Occupation Type">
+                                <div class="invalid-feedback">Enter Occupation Type</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="companyname" class="col-sm-3 col-form-label">Company Name</label>
+                            <div class="col-sm-9" id="companynameinput">
+                                <input type="text" class="form-control" id="companyname" placeholder="Company Name">
+                                <div class="invalid-feedback">Enter Company Name</div>
+                            </div>
+                        </div>
+                        <div id="mobilenumber2"></div>
+                        <div id="address3"></div>
+                    </div>
+
+                    <div id="treatmentdetails">
+                        <div class="container-fluid" style="border-bottom: 2px solid grey; " id="sideheader5">
+                            <div class="h4 d-flex px-3">Treatment Details</div>
+                        </div>
+                        <div class="row mt-3" id="distypapp">
+                            <div class="form-group col-md row">
+                                <label for="diseasetype" class="col-sm-4 col-form-label">Disease Type</label>
+                                <div class="col-sm-8" id="d-flex diseasetypeinput">
+                                    <select id="diseasetype" class="form-control" required>
+                                        <option selected disabled = "true">Select Disease Type</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md row" id="distypcus">
+                                <label for="diseasetypecus" class="col-sm-4 col-form-label">Disease Type</label>
+                                <div class="col-sm-8" id="d-flex diseasetypecusinput">
+                                    <input type="text" class="form-control" id="diseasetypecus" placeholder="Specify Disease Type">
+                                    <div class="invalid-feedback">Enter Disease Type</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="diseasename" class="col-sm-3 col-form-label">Disease Name</label>
+                            <div class="col-sm-9" id="d-flex diseasenameinput">
+                                <input type="text" class="form-control" id="diseasename" pattern=".{3,30}" maxlength="30" placeholder="Disease Name" required>
+                                <div class="invalid-feedback">Enter Disease Name</div>
+                            </div>
+                        </div>
+                        <fieldset class="form-group" id="radiofatality">
+                            <div class="row">
+                                <legend class="col-form-label col-sm-3 pt-0">Is Fatality</legend>
+                                <div class="col-sm-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="isfatality" id="isfatalityyes" value="Yes" required>
+                                        <label class="form-check-label" for="isfatalityyes">Yes</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="isfatality" id="isfatalityno" value="No">
+                                        <label class="form-check-label" for="isfatalityno">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="form-group" id="radiocured">
+                            <div class="row">
+                                <legend class="col-form-label col-sm-3 pt-0">Is Cured</legend>
+                                <div class="col-sm-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="iscured" id="iscuredyes" value="Yes">
+                                        <label class="form-check-label" for="iscured">Yes</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="iscured" id="iscuredno" value="No">
+                                        <label class="form-check-label" for="iscured">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="row">
+                            <div class="col-md-6 row">
+                                <label for="admitdate" class="form-group col-sm-5 col-form-label">Admit Date</label>
+                                <div class="form-group input-group date col-sm-7">
+                                    <input type="text" class="form-control" id="admitdate" data-provide="datepicker" placeholder="DD/MM/YYYY" pattern=".{10}" maxlength="10" required>
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <i class="far fa-calendar-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div class="invalid-feedback">Select a valid date</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 row" id="dischargedatediv">
+                                <label for="dischargedate" class="form-group col-sm-5 col-form-label">Discharge Date</label>
+                                <div class="form-group input-group date col-sm-7">
+                                    <input type="text" class="form-control" id="dischargedate" data-provide="datepicker" placeholder="DD/MM/YYYY">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <i class="far fa-calendar-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div class="invalid-feedback">Select a valid date</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="prescription" class="col-sm-3 col-form-label">Prescription</label>
+                            <div class="col-sm-9">
+                                <textarea type="text" class="form-control" id="prescription" placeholder="Prescription" rows="4"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="currentstatus" class="col-sm-3 col-form-label">Current Status</label>
+                            <div class="col-sm-9" id="d-flex currentstatusinput">
+                                <input type="text" class="form-control" id="currentstatus" placeholder="Current Status" pattern=".{3,20}" maxlength="20" required>
+                                <div class="invalid-feedback">Enter Status</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="hospitaldetails">
+                        <div class="container-fluid" style="border-bottom: 1px solid grey; " id="sideheader6">
+                            <div class="h5 d-flex px-3">Hospital Details</div>
+                        </div>
+                        <div class="form-group row mt-3"> <label for="hstate" class="col-sm-3 col-form-label">State</label>
+                            <div class="col-sm-9"> <select id="hstate" class="form-control" required>
+                                    <option selected disabled ="true">Select State</option>
+                                </select>
+                                <div class="invalid-feedback">Select State</div>
+                            </div>
+                        </div>
+                        <div class="form-group row"> <label for="hospital" class="col-sm-3 col-form-label">Hospital</label>
+                            <div class="col-sm-9"> <select id="hospital" class="form-control" required>
+                                    <option selected disabled = "true">Select Hospital</option>
+                                </select>
+                                <div class="invalid-feedback">Select Hospital</div>
+                            </div>
+                        </div>
+                        <div id="hdetails">
+                            <div class="form-group row" id="hospitalnameinput"> <label for="hospitalnamecus" class="col-sm-3 col-form-label">Hospital Name</label>
+                                <div class="col-sm-9"> <input type="text" class="form-control" id="hospitalnamecus" placeholder="Hospital Name"> </div>
+                                <div class="invalid-feedback">Enter Hospital Name</div>
+                            </div>
+                            <div id="mobilenumber3"></div>
+                            <div class="form-group row" id="haddressblock"> <label for="haddressline" class="col-sm-3 col-form-label">Address Line</label>
+                                <div class="col-sm-9"> <input type="text" class="form-control" id="haddressline" placeholder="Building Number, Street, Mandal"> </div>
+                                <div class="invalid-feedback">Enter Address</div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-sm-7">
+                                    <div class="form-group row"> <label for="hcity" class="col-sm-3 col-form-label">City</label>
+                                        <div class="col-sm-9"> <input type="text" class="form-control" id="hcity" placeholder="City">
+                                            <div class="invalid-feedback">Enter City</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="row"> <label for="hpincode" class="col-sm-5 col-form-label pr-0">Pin Code</label>
+                                        <div class="col-sm-7"> <input type="text" class="form-control" id="hpincode" placeholder="Pin Code"> </div>
+                                        <div class="invalid-feedback">Enter valid Pin Code</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary" id="addpatientbtn">Add Patient</button>
+                    </div>
+
+                </form>
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="../js/jquery-3.5.1.min.js"></script>
+
+    <script src="../js/bootstrap-datepicker.min.js"></script>
+
+    <script src="../js/bootstrap.bundle.min.js"></script>
+
+    <script src="../js/Patient.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.5.1.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container-sm pt-5 pb-5" id="cont">
+        <div class="card" id="card">
+            <div class="card-body" id="cardbody">
+
+
+                <div class="row pb-3">
+                    <div class="d-flex justify-content-start col-4">
+                        <button class="btn btn-danger justify-content-start" style="display: none;" id="backbtn">Back</button>
+                    </div>
+                    <div class="d-flex justify-content-end col-7">
+                        <button class="btn btn-success justify-content-end" id="addhospital">Add Hospital</button>
+                    </div>
+                </div>
+
+                <div class="container-fluid" id="show">
+
+                    <div class="h4 pb-1 border-bottom">Show Hospitals</div>
+
+                    <fieldset class="pt-2 form-group" id="radiosearch">
+                        <div class="row" id="searchby">
+                            <legend class="col-form-label col-sm-3 pt-0">Search By</legend>
+                            <div class="col-sm-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="searchby" id="showall" value="showall" checked>
+                                    <label class="form-check-label" for="showall">Show All</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="searchby" id="state" value="statesearch">
+                                    <label class="form-check-label" for="state">Show by State</label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="form-group row row mt-3" id="statesearch" style="display: none;">
+                        <label for="statedd" class="col-sm-3 col-form-label">State</label>
+                        <div class="col-sm-6"> <select id="statedd" class="form-control is-invalid" required>
+                                    <option selected value="0" disabled>Select State</option>
+                                </select>
+                            <div class="invalid-feedback">Please select State</div>
+                        </div>
+                    </div>
+                    <div class="d-flex col-11 justify-content-end pb-5">
+                        <button class="btn btn-outline-success" id="gosearch">Search</button>
+                    </div>
+
+                </div>
+
+
+
+
+                <div id="pages" style="display: none;"></div>
+                <table class="table table-hover" id="table" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th style="width: 5rem;" scope="col">#</th>
+                            <th style="width: 25rem;" scope="col">Hospital Name</th>
+                            <th style="width: 10rem;" scope="col">City</th>
+                            <th style="width: 10rem;" scope="col">State</th>
+                        </tr>
+                    </thead>
+                    <tbody> </tbody>
+                </table>
+                <div id="pagination" style="display: none;">
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                            <li class="page-item" id="prevt"><a class="page-link" id="prev">Previous</a></li>
+                            <li class="page-item" id="nextt"><a class="page-link" id="next">Next</a></li>
+                        </ul>
+                    </nav><br>
+                    <div class="form-group row" id="cuspage"> <label for="pageno" class="col-sm-3 col-form-label">Go to Page</label>
+                        <input type="text" class="form-control col-sm-4" id="pageno" pattern=".{1,3}" maxlength="3" placeholder="Enter Page Number">
+                        <div class="col-sm-4"><button class="btn btn-outline-success" id="gopage">Go to Page</button></div>
+                    </div>
+                </div>
+
+
+                <div id="addhospitalblock" style="display: none;">
+                    <form class="needs-validation" id="hospitalform" novalidate>
+                        <div class="h4 pb-1 border-bottom" id="header">Add Hospital</div>
+                        <div class="form-group row" id="hospitalnameinput"> <label for="hospitalname" class="col-sm-3 col-form-label">Hospital Name</label>
+                            <div class="col-sm-9 d-flex align-items-center">
+                                <input type="text" class="form-control" id="hospitalname" pattern=".{3,50}" maxlength="50" placeholder="Hospital Name" required>
+                                <div class="invalid-feedback">Enter Hospital Name</div>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="mobileblock"> <label for="mobile" class="col-sm-3 col-form-label">Mobile Number</label>
+                            <div class="col-sm-9 d-flex align-items-center" id="mobilenoinput">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">+91</div>
+                                    </div>
+                                    <input type="text" class="form-control" id="mobile" placeholder="10 Digit Mobile Number" pattern=".{10}" maxlength="10" required>
+                                    <div class="invalid-feedback">Enter 10 digit Mobile Number</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="haddressblock"> <label for="haddressline" class="col-sm-3 col-form-label">Address Line</label>
+                            <div class="col-sm-9"> <input type="text" class="form-control" id="haddressline" pattern=".{3,50}" maxlength="50" placeholder="Building Number, Street, Mandal" required>
+                                <div class="invalid-feedback">Enter Address</div>
+                            </div>
+                        </div>
+                        <div class="form-group row"> <label for="hcity" class="col-sm-3 col-form-label">City</label>
+                            <div class="col-sm-9"> <input type="text" class="form-control" id="hcity" pattern=".{3,30}" maxlength="30" placeholder="City" required>
+                                <div class="invalid-feedback">Enter City</div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group row col-sm-7"> <label for="hstate" class="col-sm-3 col-form-label">State</label>
+                                <div class="col-sm-9"> <select id="hstate" class="form-control" required>
+                                    <option selected disabled ="true">Select State</option>
+                                </select>
+                                    <div class="invalid-feedback">Select State</div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-5">
+                                <div class="row">
+                                    <label for="hpincode" class="col-sm-5 col-form-label pr-0">Pin Code</label>
+                                    <div class="col-sm-7 pr-0"> <input type="text" class="form-control" id="hpincode" pattern=".{6}" maxlength="6" placeholder="Pin Code" required>
+                                        <div class="invalid-feedback">Enter City</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end col-11">
+                            <button type="submit" class="btn btn-success justify-content-end" id="addhospitalbtn">Add Hospital</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="pt-2" id="showhospitalblock" style="display: none;">
+                    <div class="d-flex pb-1 justify-content-between border-bottom">
+                        <h4>Hospital Details</h4>
+                        <button type="submit" class="btn btn-success" id="editbtn">Edit</button>
+                    </div>
+                    <div class="form-group row pt-3">
+                        <div class="col-sm-4"> Hospital Name </div>
+                        <div class="col-sm-1 d-flex align-items-center"> : </div>
+                        <div class="col-sm d-flex align-items-center" id="showhname"> </div>
+                    </div>
+                    <div class="form-group row pt-3">
+                        <div class="col-sm-4"> Mobile Number </div>
+                        <div class="col-sm-1 d-flex align-items-center"> : </div>
+                        <div class="col-sm d-flex align-items-center" id="showhmobileno"> </div>
+                    </div>
+                    <div class="form-group row pt-3">
+                        <div class="col-sm-4"> Address Line </div>
+                        <div class="col-sm-1 d-flex align-items-center"> : </div>
+                        <div class="col-sm d-flex align-items-center" id="showhaddressline"> </div>
+                    </div>
+                    <div class="form-group row pt-3">
+                        <div class="col-sm-4"> City </div>
+                        <div class="col-sm-1 d-flex align-items-center"> : </div>
+                        <div class="col-sm d-flex align-items-center" id="showhcity"> </div>
+                    </div>
+                    <div class="form-group row pt-3">
+                        <div class="col-sm-4"> State </div>
+                        <div class="col-sm-1 d-flex align-items-center"> : </div>
+                        <div class="col-sm d-flex align-items-center" id="showhstate"> </div>
+                    </div>
+                    <div class="form-group row pt-3">
+                        <div class="col-sm-4"> Pin-Code </div>
+                        <div class="col-sm-1 d-flex align-items-center"> : </div>
+                        <div class="col-sm d-flex align-items-center" id="showhpincode"> </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../js/Hospital.js"></script>
+
+    <script src="../js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+</html>
